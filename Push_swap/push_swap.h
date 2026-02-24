@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 21:17:00 by jezambra          #+#    #+#             */
-/*   Updated: 2026/02/24 15:47:26 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/02/24 17:18:24 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@ typedef struct	s_stack
 
 void	ctrl_error(void);
 void	stack_add_back(t_stack **stack, t_stack *nodo);
+void	duplicates(t_stack *stack);
+void	add_index(t_stack *stack);
+
 int		valid_nbr(char *str);
 long	ft_atoi_push_swap(const char *str);
+
 t_stack	*new_node_stack(int value);
 t_stack	*put_stack_a(int argc, char **argv);
 

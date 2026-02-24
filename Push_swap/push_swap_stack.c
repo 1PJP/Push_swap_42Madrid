@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:19:42 by jezambra          #+#    #+#             */
-/*   Updated: 2026/02/24 15:41:12 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/02/24 17:05:46 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,27 @@ t_stack	*put_stack_a(int argc, char **argv)
 		i++;
 	}
 	return (stack_a);
+}
+/*con esta funcion asigna a cada nodo un número (index) que representa su posición si la lista estuviera ordenada
+*/
+void	add_index(t_stack *stack)
+{
+	t_stack	*put_nbr;//nodo al que asignamos 
+	t_stack	*cmp;//nodo de comparacion
+	int	i;//contador
+
+	put_nbr = stack;//empezamos desde el 1er nodo
+	while (put_nbr)//recorrecomos lista nodo por nodo
+	{
+		i = 0;
+		cmp = stack;//comparamos el 1er nodo
+		while (cmp)
+		{
+			if (cmp->value < put_nbr->value)//si el valor del nodo que comparamos en menor que el valor del nodo actual
+				i++;
+			cmp = cmp->next;//avanzamos al sigiente nodo para hacer la misma co mparacion
+		}
+		put_nbr->index = i;//guardamos en i cuanros numeros son menosres
+		put_nbr = put_nbr->next;//pasamos al sigiente nodo
+	}
 }
