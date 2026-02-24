@@ -6,7 +6,7 @@
 #    By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/30 17:47:17 by jezambra          #+#    #+#              #
-#    Updated: 2026/02/23 22:45:05 by jezambra         ###   ########.fr        #
+#    Updated: 2026/02/24 15:35:01 by jezambra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 #files surce y objets
 SRC =	push_swap_utils.c \
+		push_swap_stack.c \
+		
 	
 
 OBJ = $(SRC:.c=.o)

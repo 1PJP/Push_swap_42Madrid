@@ -6,14 +6,14 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:19:42 by jezambra          #+#    #+#             */
-/*   Updated: 2026/02/23 23:15:05 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/02/24 15:41:12 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//esto es lista doble enlazada
-//creacion del primer nodo
+//David esto es lista doble enlazada
+//al igual que las listas de la libft creamos el primer nodo solo que es lista doble
 t_stack	*new_node_stack(int value)
 {
 	t_stack	*nodo;
@@ -27,7 +27,7 @@ t_stack	*new_node_stack(int value)
 	nodo->prev = NULL;//no hay nodo anterior AUN
 	return (nodo);//devolvemos el nodo creado
 }
-//agregamos nodo final
+//agregamos nodo final al igual que la libft
 void	stack_add_back(t_stack **stack, t_stack *nodo)
 {
 	t_stack	*last;
@@ -45,6 +45,9 @@ void	stack_add_back(t_stack **stack, t_stack *nodo)
 	last->next = nodo;//ultimo nodo apunta al nuevo
 	nodo->prev = last;//el nuevo nodo apunta al anterior
 }
+/*Esta función construye la pila inicial del programa, recorre los argumentos
+valida que sean números correctos, los convierte a int
+crea nodos de una lista doble enlazada y los añade al final de stack_a.*/
 t_stack	*put_stack_a(int argc, char **argv)
 {
 	t_stack	*stack_a;
