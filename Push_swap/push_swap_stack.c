@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:19:42 by jezambra          #+#    #+#             */
-/*   Updated: 2026/02/24 17:05:46 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/02/26 21:21:52 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ void	stack_add_back(t_stack **stack, t_stack *nodo)
 /*Esta función construye la pila inicial del programa, recorre los argumentos
 valida que sean números correctos, los convierte a int
 crea nodos de una lista doble enlazada y los añade al final de stack_a.*/
-t_stack	*put_stack_a(int argc, char **argv)
+t_stack	*put_stack_a(char **argv)
 {
 	t_stack	*stack_a;
 	long	nbr;
 	int	i;
 
 	stack_a = NULL;
-	i = 1;//lo iniciamos en 1 por que 0 es el a.out
-	while (i < argc)
+	i = 0;
+	while (argv[i])
 	{
 		if (!valid_nbr(argv[i]))//validamos str
 			ctrl_error();

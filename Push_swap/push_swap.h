@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 21:17:00 by jezambra          #+#    #+#             */
-/*   Updated: 2026/02/24 17:18:24 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/02/26 21:51:26 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int		valid_nbr(char *str);
 long	ft_atoi_push_swap(const char *str);
 
 t_stack	*new_node_stack(int value);
-t_stack	*put_stack_a(int argc, char **argv);
+t_stack	*put_stack_a(char **argv);
 
 #endif
