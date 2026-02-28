@@ -6,7 +6,7 @@
 #    By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/30 17:47:17 by jezambra          #+#    #+#              #
-#    Updated: 2026/02/24 17:19:47 by jezambra         ###   ########.fr        #
+#    Updated: 2026/02/28 11:10:45 by jezambra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,11 @@ CFLAGS = -Wall -Wextra -Werror
 #files surce y objets
 SRC =	push_swap_utils.c \
 		push_swap_stack.c \
+		push_swap_split.c \
+		push_swap_splitu_ulties.c \
+		push.c \
+		swap.c \
+		main.c \
 		
 	
 

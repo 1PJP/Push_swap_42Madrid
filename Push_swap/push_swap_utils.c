@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 21:31:26 by jezambra          #+#    #+#             */
-/*   Updated: 2026/02/24 17:17:22 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/02/28 12:40:08 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,20 @@ long	ft_atoi_push_swap(const char *str)
 	}
 	while (str[i])
 	{
+		if (str[i] < '0' || str[i] > '9')
+			ctrl_error();
 		nbr = nbr * 10 + (str[i] - '0');
 		i++;
 	}
-	return (nbr * sign);
+	nbr = nbr * sign;
+	check_int_range(nbr);
+	return (nbr);
+}
+/*Verifica si un long puede caber en un int. Si no, da error y termina.*/
+void	check_int_range(long nbr)
+{
+	if (nbr > 2147483647 || nbr < -2147483648)
+		ctrl_error();
 }
 /*esta funcion nos sirve para comparar enteroes duplucados, si estan duplicados retorna error y 
 termina el programa*/
