@@ -6,7 +6,7 @@
 #    By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/30 17:47:17 by jezambra          #+#    #+#              #
-#    Updated: 2026/02/28 11:10:45 by jezambra         ###   ########.fr        #
+#    Updated: 2026/03/06 23:52:14 by jezambra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,13 @@ CFLAGS = -Wall -Wextra -Werror
 SRC =	push_swap_utils.c \
 		push_swap_stack.c \
 		push_swap_split.c \
-		push_swap_splitu_ulties.c \
-		push.c \
-		swap.c \
-		main.c \
+		push_swap_split_ulties.c \
+		basic_moves.c \
+		reverse_rotative_moves.c \
+		algorithm_utils.c \
+		sort_controller.c \
+		k_sort.c \
+		main_real.c \
 		
 	
 
@@ -45,7 +48,7 @@ all: $(NAME)
 
 #rule for make library
 $(NAME): $(OBJ)
-	$(AR) $@ $^
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "${GREEN} $(NAME) Created."
 #all file .c to .o
 %.o: %.c $(INCLUDE)

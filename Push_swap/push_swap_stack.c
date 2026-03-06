@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:19:42 by jezambra          #+#    #+#             */
-/*   Updated: 2026/02/26 21:21:52 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/06 23:34:05 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,20 @@ void	add_index(t_stack *stack)
 		put_nbr->index = i;//guardamos en i cuanros numeros son menosres
 		put_nbr = put_nbr->next;//pasamos al sigiente nodo
 	}
+}
+void	free_stack(t_stack **stack)
+{
+	t_stack	*tmp;
+	t_stack	*current;
+
+	if (!stack || !*stack)
+		return ;
+	current = *stack;
+	while (current)
+	{
+		tmp = current->next;
+		free(current);
+		current = tmp;
+	}
+	*stack = NULL;
 }

@@ -6,11 +6,24 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 15:52:43 by jezambra          #+#    #+#             */
-/*   Updated: 2026/02/28 16:14:55 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/06 22:34:55 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*con esta funcion detectamos si esta ordenado o no, si esta ordenado
+retorna 1 si no 0*/
+int	is_sorted(t_stack *stack)
+{
+	while (stack && stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
 
 /*esta funcion lo que hace es calcular cuantos elementos tiene nuestro stack
 poco que comentar se entiene facil*/

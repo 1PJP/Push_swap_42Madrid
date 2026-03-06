@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 10:58:52 by jezambra          #+#    #+#             */
-/*   Updated: 2026/02/28 12:22:51 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/07 00:01:33 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,30 @@ int	main(void)
 	print_stack(stack_b, "B");
 
 	return 0;
+}
+
+
+#include "push_swap.h"
+
+int main(int argc, char **argv)
+{
+	t_stack *a;
+	t_stack *b;
+	char	**args;
+	int		need_free;
+
+	if (argc < 2)
+		return (0);
+	a = NULL;
+	b = NULL;
+	args = id_args(argc, argv, &need_free);
+	a = put_stack_a(args);
+	if (!a) // Siempre comprueba si el stack se creó bien
+		return (0);
+	duplicates(a);
+	sort_stack(&a, &b);
+	free_stack(&a); // ¡No olvides liberar al final!
+	if (need_free)
+		free_split(args); // Usa la función que ya tienes para el split
+	return (0);
 }
