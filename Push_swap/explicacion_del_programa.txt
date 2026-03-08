@@ -1,0 +1,164 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    explicacion_del_programa.txt                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/03/08 22:45:03 by jezambra          #+#    #+#              #
+#    Updated: 2026/03/08 23:09:26 by jezambra         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+David en este archivo te explico que hace cada file y el orden en el que va la logica
+
+push_swap_utils.c — Validación y utilidades básicas
+
+ctrl_error --- escribe "Error" en stderr y termina el programa inmediatamente.
+valid_nbr --- comprueba que un string sea un número válido. Acepta - o + al principio, 
+luego solo dígitos. Si hay cualquier otra cosa devuelve 0.
+ft_atoi_push_swap --- convierte un string a número long. Igual que atoi pero llama a ctrl_error 
+si encuentra algo que no sea un dígito.
+check_int_range --- comprueba que el número cabe en un int. Si es mayor que
+ 2147483647 o menor que -2147483648 da error.
+duplicates --- recorre la lista comparando cada nodo con todos los siguientes, 
+si encuentra dos nodos con el mismo valor da error.
+
+
+push_swap_stack.c — Construcción y manejo de la lista
+
+new_node_stack --- crea un nodo nuevo con un número. El index se inicializa a -1 porque 
+todavía no sabemos su posición ordenada.
+stack_add_back --- añade un nodo al final de la lista. Si la lista está vacía el nuevo nodo es el primero.
+put_stack_a --- construye el stack A completo a partir de los argumentos. Por cada argumento 
+valida que sea número, lo convierte y crea un nodo.
+add_index --- asigna a cada nodo su índice. Para calcularlo cuenta cuántos números de la lista son menores que él.
+ El más pequeño de todos recibe índice 0, el siguiente 1, y así sucesivamente.
+free_stack --- libera toda la memoria de la lista nodo por nodo y pone el puntero a NULL al final.
+
+
+push_swap_split.c — Separar argumentos entre comillas
+
+El problema que resuelve: si ejecutas ./push_swap "5 4 3 2 1" el programa solo recibe un argumento con todo dentro. 
+El split lo separa por espacios para obtener cada número por separado.
+count_words --- cuenta cuántas palabras hay en el string separadas por el carácter c.
+words_save_memory --- reserva la memoria necesaria para guardar cada palabra. Crea un array de strings con el tamaño exacto de cada una.
+free_memory --- libera toda la memoria reservada si algo falla durante la asignación.
+words_in_box --- copia cada palabra en su posición del array ya reservado.
+push_swap_split --- la función principal que coordina las cuatro anteriores. Cuenta palabras, 
+reserva memoria, copia el contenido y devuelve el array de strings.
+
+
+push_swap_split_ulties.c — Gestión de flags y argumentos
+
+free_split --- libera la memoria del array de strings creado por el split, string por string y luego el array entero.
+id_args --- decide si usar el split o no. Si los números vienen entre comillas ("5 4 3 2 1") usa el split para separarlos. 
+Si vienen sin comillas apunta directamente a argv saltándose las flags.
+ft_strcmp_ps --- compara dos strings carácter a carácter. Devuelve 0 si son iguales. Se usa para identificar qué flag es cada argumento.
+get_flag --- recorre los argumentos mientras empiecen por --. Por cada flag detecta qué algoritmo se pidió y si está el modo benchmark.
+ Devuelve un número: 0=adaptive, 1=simple, 2=medium, 3=complex.
+
+
+ basic_moves.c — Movimientos sa, sb, ss, pa, pb
+ 
+swap_stack --- intercambia los dos primeros nodos de una pila. Reorganiza los punteros next y prev para que el segundo nodo pase a ser el primero y viceversa.
+sa_sb --- ejecuta el swap según la flag move: 0=sa (swap A), 1=sb (swap B), 2=ss (ambos a la vez). Escribe la operación en stdout y si bench no es NULL incrementa 
+el contador correspondiente.
+push_stack --- mueve el primer nodo de una pila al principio de otra. Desvincula el nodo de su pila original y lo conecta al inicio de la pila destino.
+pa_pb --- ejecuta el push según move: 0=pa (mueve el primero de B a A), 1=pb (mueve el primero de A a B). Escribe la operación en stdout y cuenta si está en modo benchmark.
+
+
+reverse_rotative_moves.c — Movimientos ra, rb, rr, rra, rrb, rrr
+
+rotate_stack --- mueve el primer nodo al final de la lista. Ejemplo: 1 2 3 4 → 2 3 4 1. Reorganiza los punteros para desconectar el primero y conectarlo al final.
+ra_rb_rr --- ejecuta la rotación según move: 0=ra (rota A), 1=rb (rota B), 2=rr (ambos a la vez). Escribe la operación en stdout y cuenta si está en modo benchmark.
+revers_stack --- mueve el último nodo al principio de la lista. Ejemplo: 1 2 3 4 → 4 1 2 3. Es la operación contraria a rotate_stack.
+rra_rrb_rrr --- ejecuta la rotación inversa según move: 0=rra (rota A al revés), 1=rrb (rota B al revés), 2=rrr (ambos a la vez). Escribe la operación en stdout y
+ cuenta si está en modo benchmark.
+
+
+ algorithm_utils.c — Utilidades para los algoritmos
+ 
+is_sorted --- recorre la lista comparando cada nodo con el siguiente. Si encuentra un número mayor antes que uno menor devuelve 0 (no ordenado). Si llega al final 
+sin problemas devuelve 1 (ordenado).
+size_stack --- cuenta cuántos nodos tiene la lista y devuelve ese número.
+compute_disorder --- calcula el índice de desorden entre 0 y 1. Compara todos los pares posibles de números y cuenta cuántos están en el orden equivocado. Divide los errores 
+entre el total de pares. Si da 0 está ordenado, si da 1 está completamente desordenado. Este valor decide qué algoritmo usa el modo adaptativo.
+ft_memset_ps --- pone todos los bytes de un bloque de memoria al valor indicado. Se usa para inicializar la struct t_bench a ceros antes de empezar a contar operaciones.
+
+
+insertion_sort.c — Algoritmo simple O(n²)
+
+get_min_pos --- recorre la lista y devuelve la posición (0, 1, 2...) donde está el número con el índice más pequeño, es decir, el mínimo actual.
+insertion_sort --- en cada pasada busca el mínimo y lo sube al tope de A. Si está en la mitad superior usa ra para rotarlo hacia arriba, si está en la mitad inferior
+ usa rra porque es más rápido. Una vez arriba lo manda a B con pb. Cuando A está vacío devuelve todo de B a A con pa, quedando ordenado. Es O(n²) porque por cada elemento hace hasta n rotaciones.
+
+
+ k_sort.c — Algoritmo intermedio O(n√n)
+ 
+get_max_index --- recorre el stack y devuelve el índice más alto que encuentra. Se usa para saber qué número debe volver primero a A.
+get_pos --- devuelve la posición (0, 1, 2...) de un índice concreto dentro del stack. Se usa para decidir si es más rápido rotar hacia adelante o hacia atrás.
+push_back_to_a --- vacía B devolviendo los elementos a A en orden descendente. Por cada vuelta busca el máximo de B, lo sube al tope usando rb o rrb según si está más cerca 
+del principio o del final, y lo pasa a A con pa. Al terminar A queda ordenado.
+k_sort --- el algoritmo de chunks. Divide los índices en grupos del tamaño range (15 para 100 elementos, 35 para 500) y va pasando los elementos a B grupo por grupo.
+ Si el índice del tope de A cabe en el grupo actual va a B, si además no es el siguiente exacto se manda al fondo de B con rb. Si es demasiado grande rota A buscando 
+ uno más pequeño. Al vaciar A llama a push_back_to_a para reconstruir A ordenado.
+
+
+ radix_sort.c — Algoritmo complejo O(n log n)
+ 
+get_max_bits --- calcula cuántos bits necesita el índice más grande. Por ejemplo con 8 elementos el índice máximo es 7 (que en binario es 111) y necesita 3 bits. Esto determina cuántas pasadas hay que hacer.
+radix_sort --- ordena usando los índices bit a bit de menor a mayor significativo. En cada pasada mira el bit actual de cada elemento: si es 0 lo manda a B con pb, si es 1 lo rota en A con ra.
+ Al terminar cada pasada devuelve todo B a A con pa. Después de tantas pasadas como bits haya, A queda ordenado. Es O(n log n) porque hace log n pasadas y cada pasada toca los n elementos.
+
+
+ sort_controller.c — El cerebro que decide qué algoritmo usar
+ 
+tiny_sort --- ordena exactamente 3 elementos. Hay 6 posibles ordenaciones y cada una tiene su combinación óptima de movimientos hardcodeada. Es el caso más eficiente posible para 3 elementos.
+sort_five --- ordena 4 o 5 elementos. Manda los 2 menores a B rotando hasta encontrarlos, ordena los 3 que quedan en A con tiny_sort, devuelve los 2 de B a A y si hace falta hace un sa final para ajustar.
+select_algorithm --- el punto de entrada para ordenar. Primero gestiona los casos pequeños (1, 2, 3 y hasta 5 elementos) directamente. Para listas más grandes decide qué algoritmo usar según la 
+flag recibida: 1=insertion_sort, 2=k_sort, 3=radix_sort. Si no hay flag usa el modo adaptativo y decide según el índice de desorden: menor de 0.2 usa insertion, menor de 0.5 usa k_sort, mayor usa radix.
+
+
+bench.c — El modo benchmark
+
+ft_putnbr_fd --- escribe un número entero en un file descriptor dígito a dígito. Se llama a sí misma recursivamente para escribir primero los dígitos de la izquierda.
+ft_putstr_fd --- escribe un string carácter a carácter en un file descriptor.
+print_float --- escribe un float con dos decimales. Separa la parte entera de la decimal multiplicando por 100 para obtener los dos decimales como entero.
+get_strategy_name --- devuelve el nombre del algoritmo usado según la flag. Si es modo adaptativo usa el índice de desorden para saber cuál se ejecutó realmente.
+print_bench --- imprime por stderr todas las métricas al final de la ejecución: el porcentaje de desorden, la estrategia usada, el total de operaciones y el desglose por cada tipo de movimiento.
+ Va a stderr para no mezclarse con las operaciones que van a stdout.
+
+
+ main_real.c — El punto de entrada del programa
+ 
+count_flags --- cuenta cuántos argumentos empiezan por -- al principio de argv. Así sabe cuántas posiciones saltar para llegar a los números.
+init_stack --- construye el stack A completo. Identifica los argumentos, crea los nodos, comprueba duplicados y asigna los índices.
+main --- coordina todo el programa en orden:
+Si no hay argumentos termina sin hacer nada.
+Inicializa bench a ceros y detecta las flags.
+Construye el stack A con los números.
+Calcula el índice de desorden.
+Si no está ordenado llama a select_algorithm para ordenarlo.
+Si está en modo --bench imprime las métricas por stderr.
+Libera toda la memoria antes de salir.
+
+
+Makefile — Cómo se compila el proyecto
+
+Variables --- definen el nombre del ejecutable (push_swap), el compilador (cc), los flags de compilación (-Wall -Wextra -Werror) y los colores para los mensajes.
+SRC y OBJ --- lista todos los archivos .c del proyecto. OBJ se genera automáticamente cambiando .c por .o.
+all --- regla por defecto. Compila todo y genera el ejecutable.
+$(NAME) --- enlaza todos los .o para producir el binario final push_swap.
+%.o: %.c --- regla genérica que compila cada .c a su .o correspondiente.
+clean --- borra todos los archivos .o.
+fclean --- borra los .o y el ejecutable.
+re --- hace fclean y luego all, recompila todo desde cero.
+
+
+push_swap.h — El índice del proyecto
+
+#ifndef --- evita que se incluya dos veces.
+t_stack --- el nodo de la lista. Guarda el número (value), su posición ordenada (index), y punteros al nodo siguiente y anterior.
+t_bench --- contador para el modo benchmark. Un campo por cada tipo de operación más un total.
+Las declaraciones --- le dicen al compilador qué funciones existen en los otros archivos .c.

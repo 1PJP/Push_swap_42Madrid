@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:19:42 by jezambra          #+#    #+#             */
-/*   Updated: 2026/03/06 23:34:05 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/08 23:10:47 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,20 @@ void	add_index(t_stack *stack)
 		put_nbr = put_nbr->next;//pasamos al sigiente nodo
 	}
 }
+/* libera toda la memoria de la lista nodo a nodo y pone el puntero a NULL */
 void	free_stack(t_stack **stack)
 {
 	t_stack	*tmp;
 	t_stack	*current;
 
-	if (!stack || !*stack)
+	if (!stack || !*stack) /* si el stack ya esta vacio no hacemos nada */
 		return ;
-	current = *stack;
+	current = *stack; /* empezamos desde el primer nodo */
 	while (current)
 	{
-		tmp = current->next;
-		free(current);
-		current = tmp;
+		tmp = current->next; /* guardamos el siguiente antes de liberar */
+		free(current); /* liberamos el nodo actual */
+		current = tmp; /* avanzamos al siguiente nodo */
 	}
-	*stack = NULL;
+	*stack = NULL; /* ponemos el puntero a NULL para evitar dangling pointer */
 }

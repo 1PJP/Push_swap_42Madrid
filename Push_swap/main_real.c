@@ -6,28 +6,37 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 22:02:01 by jezambra          #+#    #+#             */
-/*   Updated: 2026/03/07 00:13:21 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/08                               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-// Función simple para ver cómo están los números en el stack
-void	print_stack(t_stack *s, char *name)
+/* cuenta cuantas flags hay al principio de los argumentos
+   ejemplo: --bench --complex 5 4 3 → devuelve 2 */
+static int	count_flags(int argc, char **argv)
 {
-	printf("Stack %s: ", name);
-	if (!s)
-	{
-		printf("(vacio)\n");
-		return ;
-	}
-	while (s)
-	{
-		printf("%d ", s->value);
-		s = s->next;
-	}
-	printf("\n");
+	int	i;
+
+	i = 1;
+	while (i < argc && argv[i][0] == '-' && argv[i][1] == '-')
+		i++;
+	return (i - 1);
+}
+
+/* inicializa el stack a partir de los argumentos y valida la entrada */
+static t_stack	*init_stack(int argc, char **argv, char ***args,
+				int *need_free, int has_flag)
+{
+	t_stack	*a;
+
+	*args = id_args(argc, argv, need_free, has_flag);
+	a = put_stack_a(*args);
+	if (!a)
+		return (NULL);
+	duplicates(a);
+	add_index(a);
+	return (a);
 }
 
 int	main(int argc, char **argv)
@@ -35,40 +44,32 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 	char	**args;
-	int	need_free;
+	int		need_free;
+	int		flag;
+	int		has_flag;
+	int		is_bench;
+	t_bench	bench;
+	float	disorder;
 
-	if (argc < 2)
+	if (argc < 2) /* si no hay argumentos no hacemos nada */
 		return (0);
 	a = NULL;
 	b = NULL;
-	args = id_args(argc, argv, &need_free);
-	a = put_stack_a(args);
-	if (!a)
+	is_bench = 0;
+	ft_memset_ps(&bench, 0, sizeof(t_bench)); /* inicializamos bench a 0 */
+	flag = get_flag(argc, argv, &is_bench); /* detectamos que algoritmo usar y si hay --bench */
+	has_flag = count_flags(argc, argv); /* contamos cuantas flags hay para saltar */
+	a = init_stack(argc, argv, &args, &need_free, has_flag); /* construimos el stack A */
+	if (!a) /* si no hay numeros validos terminamos */
 		return (0);
-	duplicates(a);
-
-// 1. Muestra el orden inicial
-	printf("\nORDEN INICIAL:\n");
-	print_stack(a, "A");
-	printf("---------------------------\n");
-
-// 2. Ejecuta el algoritmo (aquí se imprimirán los sa, pb, etc.)
-	sort_stack(&a, &b);
-
-	// 3. Muestra el orden final
-	printf("---------------------------\n");
-	printf("ORDEN FINAL:\n");
-	print_stack(a, "A");
-	print_stack(b, "B");
-
-// 4. Verificación de seguridad
-	if (is_sorted(a) && size_stack(b) == 0)
-		printf("\nRESULTADO: OK (Ordenado correctamente)\n");
-	else
-		printf("\nRESULTADO: KO (Sigue desordenado)\n");
-
-	free_stack(&a);
-	if (need_free)
+	disorder = compute_disorder(a); /* calculamos el indice de desorden antes de ordenar */
+	if (!is_sorted(a)) /* si ya esta ordenado no hacemos nada */
+		select_algorithm(&a, &b, flag, is_bench ? &bench : NULL);
+	if (is_bench) /* si hay --bench imprimimos las metricas por stderr */
+		print_bench(&bench, disorder, flag);
+	free_stack(&a); /* liberamos stack A */
+	free_stack(&b); /* liberamos stack B */
+	if (need_free) /* si usamos split liberamos el array de strings */
 		free_split(args);
 	return (0);
 }

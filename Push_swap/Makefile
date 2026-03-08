@@ -6,7 +6,7 @@
 #    By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/30 17:47:17 by jezambra          #+#    #+#              #
-#    Updated: 2026/03/06 23:52:14 by jezambra         ###   ########.fr        #
+#    Updated: 2026/03/08 21:39:02 by jezambra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,9 @@ SRC =	push_swap_utils.c \
 		algorithm_utils.c \
 		sort_controller.c \
 		k_sort.c \
+		radix_sort.c \
+		insertion_sort.c \
+		bench.c \
 		main_real.c \
 		
 	

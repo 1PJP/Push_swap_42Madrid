@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 15:52:43 by jezambra          #+#    #+#             */
-/*   Updated: 2026/03/06 22:34:55 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/08 22:00:33 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,19 @@ float	compute_disorder(t_stack *stack)
 	if (total_pairs == 0)
 		return (0);//si la lista esta vacio o tine un nodo retorna 0
 	return (mistakes / total_pairs);//devolvemos una proporcion de erres
+}
+/* inicializa un bloque de memoria a 0, equivalente a memset de libc
+   lo necesitamos para inicializar la struct t_bench antes de contar operaciones */
+void	ft_memset_ps(void *ptr, int value, int size)
+{
+	int				i;
+	unsigned char	*p;
+
+	i = 0;
+	p = (unsigned char *)ptr;
+	while (i < size)
+	{
+		p[i] = (unsigned char)value;
+		i++;
+	}
 }
