@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 21:28:37 by jezambra          #+#    #+#             */
-/*   Updated: 2026/03/08 22:41:14 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/09 20:33:42 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	print_bench(t_bench *bench, float disorder, int flag)
 	write(2, "\n", 1);
 	ft_putstr_fd("[bench] sa: ", 2);	ft_putnbr_fd(bench->sa, 2);
 	ft_putstr_fd("  sb: ", 2);		ft_putnbr_fd(bench->sb, 2);
-	ft_putstr_fd("  ss: ", 2);		ft_putnbr_fd(bench->ss, 2);
+	ft_putstr_fd("  ss: ", 2);		ft_putnbr_fd(bench->ss, 2);//esto nevesito redicir lineas esprovicional
 	ft_putstr_fd("  pa: ", 2);		ft_putnbr_fd(bench->pa, 2);
 	ft_putstr_fd("  pb: ", 2);		ft_putnbr_fd(bench->pb, 2);
 	write(2, "\n", 1);
