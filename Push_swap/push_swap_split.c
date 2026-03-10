@@ -6,15 +6,11 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:52:52 by jezambra          #+#    #+#             */
-/*   Updated: 2026/02/26 21:19:15 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/10 20:51:28 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*usamos el split para tomar en cuenta el caso en el que nos pasen algo como "1 2 3 4"
- ya que aqui solo toma en cuenta 2 argumentos el ./a.out y lo que esta dentro de las ""
- no es lo mismo que hagamos algo como 1 2 3 4 sin comillas aqui ya toma en cuenta 5 
- argumentos con el ./a.out*/
 
 static void	words_in_box(char **str, char const *s, char c, int word)
 {

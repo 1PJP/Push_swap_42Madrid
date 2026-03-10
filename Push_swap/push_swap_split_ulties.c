@@ -6,14 +6,13 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:40:36 by jezambra          #+#    #+#             */
-/*   Updated: 2026/03/08 22:10:29 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/10 20:52:45 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "push_swap.h"
 
-//aqui vamos a liberar el split para las fugas
 void	free_split(char **str)
 {
 	int	i;
@@ -28,16 +27,15 @@ void	free_split(char **str)
 	}
 	free(str);
 }
-/*esta funcion identifica si se usa o no el split, si solo ve 2 arg usa split
-de lo contrario usa arg normal*/
+
 char	**id_args(int argc, char **argv, int *need_free, int has_flag)
 {
 	char	**id;
 	int		start;
 
 	*need_free = 0;
-	start = 1 + has_flag; /* saltamos ./push_swap + todas las flags */
-	if (argc - has_flag == 2) /* solo un argumento de números (con "") */
+	start = 1 + has_flag;
+	if (argc - has_flag == 2)
 	{
 		id = push_swap_split(argv[start], ' ');
 		if (!id)
@@ -48,6 +46,7 @@ char	**id_args(int argc, char **argv, int *need_free, int has_flag)
 		id = argv + start;
 	return (id);
 }
+
 static int	ft_strcmp_ps(char *s1, char *s2)
 {
 	int	i;
@@ -57,11 +56,7 @@ static int	ft_strcmp_ps(char *s1, char *s2)
 		i++;
 	return (s1[i] - s2[i]);
 }
-/* Detecta si el primer argumento es una flag y devuelve qué algoritmo usar.
-   0 = adaptive (defecto)
-   1 = simple
-   2 = medium
-   3 = complex */
+
 int	get_flag(int argc, char **argv, int *is_bench)
 {
 	int	i;

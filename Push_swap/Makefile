@@ -6,7 +6,7 @@
 #    By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/30 17:47:17 by jezambra          #+#    #+#              #
-#    Updated: 2026/03/08 21:39:02 by jezambra         ###   ########.fr        #
+#    Updated: 2026/03/10 21:23:49 by jezambra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,15 @@ SRC =	push_swap_utils.c \
 		push_swap_split.c \
 		push_swap_split_ulties.c \
 		basic_moves.c \
+		rotate_revers_stack.c \
 		reverse_rotative_moves.c \
 		algorithm_utils.c \
 		sort_controller.c \
+		insertion_sort.c \
 		k_sort.c \
 		radix_sort.c \
-		insertion_sort.c \
 		bench.c \
+		bench_utils.c \
 		main_real.c \
 		
 	

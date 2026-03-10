@@ -6,15 +6,12 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 20:43:53 by jezambra          #+#    #+#             */
-/*   Updated: 2026/03/08 21:40:29 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/10 20:53:38 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* Calcula cuántos bits necesitamos para representar el índice más grande.
-   Si tenemos 8 elementos, el índice máximo es 7 (111 en binario) → 3 bits.
-   Esto nos da la cantidad de pasadas que hay que hacer. */
 static int	get_max_bits(int size)
 {
 	int	max_bits;
@@ -30,9 +27,6 @@ static int	get_max_bits(int size)
 	return (max_bits);
 }
 
-/* Algoritmo Radix Sort LSD adaptado a push_swap. O(n log n)
-   Por cada bit: si es 0 → pb, si es 1 → ra
-   Al acabar cada pasada devuelve todo B a A con pa */
 void	radix_sort(t_stack **a, t_stack **b, t_bench *bench)
 {
 	int	size;
@@ -48,9 +42,9 @@ void	radix_sort(t_stack **a, t_stack **b, t_bench *bench)
 		i = 0;
 		while (i < size)
 		{
-			if (((*a)->index >> bit) & 1) // bit es 1 → se queda en A
+			if (((*a)->index >> bit) & 1)
 				ra_rb_rr(a, NULL, 0, bench);
-			else                          // bit es 0 → va a B
+			else
 				pa_pb(a, b, 1, bench);
 			i++;
 		}

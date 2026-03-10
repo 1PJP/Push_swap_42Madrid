@@ -37,7 +37,7 @@ con numeros negativos
 ./push_swap -5 -4 -3 -2 -1   # no muestra nada por que esta ordenado
 ./push_swap -1 0 1 2 3       # no muetra nada sigue ordenado
 ./push_swap 3 -1 2 -3 0      # muetra la operacio
-./push_swap --bench -5 3 -2 1 0  # muetra la operacion 
+./push_swap --bench -5 3 -2 1 0
 
 con comillas 
 ./push_swap "5 4 3 2 1"
@@ -73,7 +73,7 @@ shuf -i 0-99 -n 100 > args.txt
 ./push_swap --complex $(cat args.txt) | wc -l
 
 con 500 numeros
-shuf -i 0-499 -n 500 > args.txt  #solo se pone una vez y das enter y se peocede hacer las prubeas
+shuf -i 0-499 -n 500 > args.txt
 ./push_swap $(cat args.txt) | wc -l
 ./push_swap $(cat args.txt) | ./checker_linux $(cat args.txt)
 ./push_swap --simple $(cat args.txt) | wc -l
@@ -81,7 +81,7 @@ shuf -i 0-499 -n 500 > args.txt  #solo se pone una vez y das enter y se peocede 
 ./push_swap --complex $(cat args.txt) | wc -l
 
 benchmark con 500 numeros sin mostrar operaciones 
-shuf -i 0-499 -n 500 > args.txt. #solo se pone una vez y das enter y se peocede hacer las prubeas.
+shuf -i 0-499 -n 500 > args.txt
 ./push_swap --bench $(cat args.txt) 2> bench.txt | ./checker_linux $(cat args.txt)
 cat bench.txt
 ./push_swap --bench --simple $(cat args.txt) 2> bench.txt | ./checker_linux $(cat args.txt)
