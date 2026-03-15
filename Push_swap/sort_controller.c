@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 21:55:20 by jezambra          #+#    #+#             */
-/*   Updated: 2026/03/10 21:26:54 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/15 20:28:25 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	adaptive(t_stack **a, t_stack **b, t_bench *bench)
 	disorder = compute_disorder(*a);
 	if (disorder < 0.2)
 		insertion_sort(a, b, bench);
-	else if (disorder < 0.5)
+	else if (disorder < 0.7 || size <= 200)
 		k_sort(a, b, size, bench);
 	else
 		radix_sort(a, b, bench);

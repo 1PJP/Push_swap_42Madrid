@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 23:03:28 by jezambra          #+#    #+#             */
-/*   Updated: 2026/03/10 20:31:05 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/15 20:31:52 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	k_sort(t_stack **a, t_stack **b, int length, t_bench *bench)
 	if (length <= 100)
 		range = 15;
 	else
-		range = 35;
+		range = 20;
 	while (*a)
 	{
 		if ((*a)->index <= i)

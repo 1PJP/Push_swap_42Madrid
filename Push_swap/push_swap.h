@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 20:17:48 by jezambra          #+#    #+#             */
-/*   Updated: 2026/03/10 21:47:32 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/15 19:16:37 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_bench
 	int	rra;
 	int	rrb;
 	int	rrr;
+	int	out_fd;
 	int	total;
 }		t_bench;
 
@@ -52,6 +53,7 @@ typedef struct s_ps
 	int		has_flag;
 	int		is_bench;
 	int		need_free;
+	int		count_only;
 }		t_ps;
 
 /*VALIDACION Y UTILIDADES*/

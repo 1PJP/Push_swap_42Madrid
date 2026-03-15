@@ -6,7 +6,7 @@
 /*   By: jezambra <jezambra@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:40:36 by jezambra          #+#    #+#             */
-/*   Updated: 2026/03/10 20:52:45 by jezambra         ###   ########.fr       */
+/*   Updated: 2026/03/15 19:58:11 by jezambra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	get_flag(int argc, char **argv, int *is_bench)
 			flag = 0;
 		else if (ft_strcmp_ps(argv[i], "--bench") == 0)
 			*is_bench = 1;
+		else if (ft_strcmp_ps(argv[i], "--count-only") == 0)
+			return (5);
 		else
 			ctrl_error();
 		i++;
